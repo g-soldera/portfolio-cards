@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --body-bg-color: #22212c;
+  --text-color: #837e9f;
+  --bg-cards: #302f3d;
+  --bg-techs: #cb92b1;
+}
+
+.light {
+  --body-bg-color: #b1aed6;
+  --text-color: #2c2a3a;
+  --bg-cards: #e0deff;
+  --bg-techs: #9e2e6c;
+}
+
+body {
+  left: 0;
+  top: 0;
+  overflow-x: hidden;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #22212c;
+  font-family: "Merriweather Sans";
+  font-weight: 400;
+  padding: 2.5em;
+}
+
+.box {
+  display: flex;
+  justify-content: flex-start;
+  gap: 3.75em;
+  box-sizing: border-box;
+  width: 85.38em;
+}
+
+.sideblock {
+  width: 21.75em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.88em;
+}
+
+.sideblock .profilecard,
+.contactinfo,
+.technologies,
+.education,
+.experience {
+  display: block;
+  box-sizing: border-box;
+  background-color: var(--bg-cards);
+  border-radius: 1.25em;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.sideblock .profilecard {
+  height: 18.25em;
+}
+
+.sideblock .contactinfo {
+  height: 21.75em;
+}
+
+.sideblock .technologies {
+  height: 13em;
+}
+
+.sideblock .experience {
+  height: 21.81em;
+}
+
+.sideblock .education {
+  height: 22em;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 1.88em;
+  border: 1px solid red;
+  width: 59.88em;
+}
+
+.projectsheader,
+.container-1,
+.container-2,
+.postsheader,
+.post-1 {
+  background-color: var(--bg-cards);
+  border-radius: 1.25em;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.projects .projectsheader {
+  height: 5.38em;
+}
+
+.container-projects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.88em;
+}
+
+.container-1,
+.container-2 {
+  height: 11.63em;
+  width: 28.81em;
+}
