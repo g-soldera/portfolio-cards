@@ -11,7 +11,7 @@
   --bg-cards: #302f3d;
   --bg-techs: #cb92b1;
   --text-techs: #000000;
-  --avatar-border: #00ff62;
+  --avatar-border: #0004ff;
 }
 
 .light {
@@ -20,7 +20,7 @@
   --bg-cards: #e0deff;
   --bg-techs: #9e2e6c;
   --text-techs: #f9f9f9;
-  --avatar-border: #006935;
+  --avatar-border: #cf00a2;
 }
 
 body {
@@ -76,7 +76,7 @@ a {
 .profilecard .image img {
   margin-top: 2rem;
   border-radius: 50%;
-  border: 2px solid var(--avatar-border);
+  /* border: 0.15rem solid var(--avatar-border); */
   height: 8rem;
 }
 
