@@ -311,5 +311,38 @@ main {
 .post {
   margin-top: 1.88rem;
   height: 12.56rem;
-  display: block;
+  display: flex;
+  padding: 1.88rem;
+  gap: 1.25rem;
+}
+
+.post .post-avatar img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+}
+
+.post .post-message {
+  font-size: 1.13rem;
+  font-weight: 700;
+}
+
+.post .post-date {
+  font-size: 0.88em;
+  margin-bottom: 1.75rem;
+}
+
+.post-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.88rem;
+}
+
+.post .post-local {
+  display: flex;
+  gap: 1rem;
+}
+
+.post .post-ending {
+  font-size: 0.88rem;
 }
