@@ -1,5 +1,3 @@
-import axios from "axios";
-
 async function fetchRecentRepos(username) {
   try {
     const response = await axios.get(
