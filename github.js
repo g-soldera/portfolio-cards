@@ -264,9 +264,7 @@ fetchRecentRepos("g-soldera")
       const language = repo.language
       const colorCheck = datacolors[language]?.color || "#000000"
       languageColor.style.backgroundColor = colorCheck
-      const langTrend =
-        datacolors[language]?.url || "https://github.com/g-soldera"
-
+      const langTrend = datacolors[language]?.url || "https://github.com/g-soldera"
       const languageText = document.createElement("a")
       languageText.setAttribute("target", "_blank")
       languageText.setAttribute("href", `${langTrend}`)
