@@ -1,5 +1,5 @@
 // consumir o octokit
-const { Octokit } = require("octokit")
+import { Octokit } from "@octokit"
 
 const octokit = new Octokit({
   auth: "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",
