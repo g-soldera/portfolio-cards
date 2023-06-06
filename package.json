@@ -1,14 +1,14 @@
 {
-  "name": "portfolio",
+  "name": "portfoliocards",
   "version": "1.0.0",
   "description": "",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Gustavo Soldera",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "octokit": "^2.0.19"
+    "axios": "^1.4.0"
   }
 }

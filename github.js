@@ -1,51 +1,62 @@
-import { Octokit } from "octokit"
+const axios = require("axios")
 
-async function fetchUserData(username) {
-  const octokit = new Octokit()
+async function fetchRecentRepos(username) {
+  try {
+    const response = await axios.get(
+      `https://api.github.com/users/${username}/repos`
+    )
+    const repos = response.data
 
-  // Obter informações do usuário
-  const userResponse = await octokit.request(`GET /users/${username}`)
-  const user = userResponse.data
+    // Classificar os repositórios com base na propriedade "updated_at"
+    repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
 
-  // Obter os repositórios do usuário
-  const reposResponse = await octokit.request(`GET /users/${username}/repos`)
-  const repos = reposResponse.data
+    // Obter os 4 primeiros repositórios
+    const recentRepos = repos.slice(0, 4)
 
-  // Obter os commits globais
-  const commitsResponse = await octokit.request(`GET /users/${username}/events`)
-  const events = commitsResponse.data
-
-  // Filtrar os commits globais
-  const commitEvents = events.filter((event) => event.type === "PushEvent")
-
-  // Obter os últimos 4 commits globais
-  const lastCommits = commitEvents.slice(0, 4).map((event) => ({
-    repo: event.repo.name,
-    commitMessage: event.payload.commits[0].message,
-    commitDate: event.created_at,
-  }))
-
-  // Obter os 4 primeiros posts pinnados
-  const pinnedRepos = repos.filter((repo) => repo.pinned)
-
-  const pinnedPosts = pinnedRepos.slice(0, 4).map((repo) => ({
-    repo: repo.name,
-    description: repo.description,
-    url: repo.html_url,
-  }))
-
-  // Retornar os dados
-  return {
-    user,
-    pinnedPosts,
-    lastCommits,
+    return recentRepos
+  } catch (error) {
+    console.error(error)
+    throw error
   }
 }
 
-// Consumir os dados do usuário "g-soldera"
-fetchUserData("g-soldera")
-  .then((data) => {
-    console.log(data)
+async function fetchRecentCommits(username) {
+  try {
+    const response = await axios.get(
+      `https://api.github.com/users/${username}/events`
+    )
+    const events = response.data
+
+    const pushEvents = events.filter((event) => event.type === "PushEvent")
+    const sortedPushEvents = pushEvents.sort(
+      (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    )
+    const recentCommits = sortedPushEvents.slice(0, 4).map((event) => ({
+      repo: event.repo.name,
+      commitMessage: event.payload.commits[0].message,
+      commitDate: event.created_at,
+    }))
+
+    return recentCommits
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+// Consumir os 4 commits mais recentes do usuário "g-soldera"
+fetchRecentCommits("g-soldera")
+  .then((recentCommits) => {
+    recentCommits.forEach((commit) => {})
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+
+// Consumir os 4 repositórios mais recentes do usuário "g-soldera"
+fetchRecentRepos("g-soldera")
+  .then((recentRepos) => {
+    recentRepos.forEach((repo) => {})
   })
   .catch((error) => {
     console.error(error)
