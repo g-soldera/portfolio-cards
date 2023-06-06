@@ -1,5 +1,6 @@
 const colorsresponse = await fetch("./assets/colors.json")
 const colorsdata = await colorsresponse.json()
+const githubUsername = "g-soldera"
 
 async function fetchRecentRepos(username) {
   try {
@@ -47,7 +48,7 @@ async function fetchRecentCommits(username) {
 }
 
 // Consumir os 4 commits mais recentes do usuário "g-soldera"
-fetchRecentCommits("g-soldera")
+fetchRecentCommits(githubUsername)
   .then((recentCommits) => {
     recentCommits.forEach((commitBase) => {
       let commit = commitBase.event
@@ -74,7 +75,9 @@ fetchRecentCommits("g-soldera")
 
       // Criar o link para o commit
       const commitLink = document.createElement("a")
-      commitLink.href = commit.payload.commits[0].url.replace("api.github.com/repos", "github.com").replace("/commits/", "/commit/")
+      commitLink.href = commit.payload.commits[0].url
+        .replace("api.github.com/repos", "github.com")
+        .replace("/commits/", "/commit/")
       commitLink.target = "_blank"
       commitLink.textContent = `${commit.payload.commits[0].message}`
       message.appendChild(commitLink)
@@ -145,7 +148,7 @@ fetchRecentCommits("g-soldera")
   })
 
 // Consumir os 4 repositórios mais recentes do usuário "g-soldera"
-fetchRecentRepos("g-soldera")
+fetchRecentRepos(githubUsername)
   .then((recentRepos) => {
     recentRepos.forEach((repo) => {
       // Criar o elemento <a> com atributos e classes
