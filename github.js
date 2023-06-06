@@ -1,3 +1,6 @@
+const colorsresponse = await fetch("./assets/colors.json")
+const colorsdata = await colorsresponse.json()
+
 async function fetchRecentRepos(username) {
   try {
     const response = await axios.get(
@@ -256,8 +259,26 @@ fetchRecentRepos("g-soldera")
       // Adicionar o <div> forks ao <div> counts
       counts.appendChild(forks)
 
+      const languageColor = document.createElement("div")
+      languageColor.classList.add("languagecolor")
+      const language = repo.language
+      const colorCheck = datacolors[language]?.color || "#000000"
+      languageColor.style.backgroundColor = colorCheck
+      const langTrend =
+        datacolors[language]?.url || "https://github.com/g-soldera"
+
+      const languageText = document.createElement("a")
+      languageText.setAttribute("target", "_blank")
+      languageText.setAttribute("href", `${langTrend}`)
+      languageText.classList.add("languagetext")
+      languageText.textContent = `${language}`
+
+      language.appendChild(languageColor)
+      language.appendChild(languageText)
+
       // Adicionar o <div> counts ao <div> rodapé
       repoFooter.appendChild(counts)
+      repoFooter.appendChild(language)
 
       // Adicionar o título, descrição e rodapé ao container
       repoContainer.appendChild(repoTitle)
