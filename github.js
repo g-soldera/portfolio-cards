@@ -1,7 +1,7 @@
 // consumir o octokit
-import { Octokit } from "https://cdn.skypack.dev/octokit"
+import { Octokit, App } from "https://cdn.skypack.dev/octokit"
 
-window.Octokit = new Octokit({
+octokit = new Octokit({
   auth: "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",
 })
 
