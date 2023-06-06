@@ -1,4 +1,4 @@
-const { Octokit } = require("octokit")
+import { Octokit } from "octokit"
 
 async function fetchUserData(username) {
   const octokit = new Octokit()
