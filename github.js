@@ -48,7 +48,95 @@ async function fetchRecentCommits(username) {
 // Consumir os 4 commits mais recentes do usuário "g-soldera"
 fetchRecentCommits("g-soldera")
   .then((recentCommits) => {
-    recentCommits.forEach((commit) => {})
+    recentCommits.forEach((commit) => {
+      console.log(commit)
+
+      // Criar o elemento de avatar
+      const avatar = document.createElement("div")
+      avatar.className = "post-avatar"
+
+      // Criar a imagem do avatar
+      const avatarImage = document.createElement("img")
+      avatarImage.src =
+        "https://via.placeholder.com/300x300/eee?text=Placeholder"
+      avatarImage.alt = ""
+      avatar.appendChild(avatarImage)
+
+      // Criar o elemento de conteúdo do post
+      const content = document.createElement("div")
+      content.className = "post-content"
+
+      // Criar a mensagem do post
+      const message = document.createElement("div")
+      message.className = "post-message"
+
+      // Criar o link para o commit
+      const commitLink = document.createElement("a")
+      commitLink.href = commit.payload.commits[0].url
+      commitLink.target = "_blank"
+      commitLink.textContent = `${commit.commits.message}`
+      message.appendChild(commitLink)
+
+      // Criar a data do post
+      const date = document.createElement("div")
+      date.className = "post-date"
+      date.textContent = "10 minutes ago"
+
+      // Criar o footer do post
+      const footer = document.createElement("div")
+      footer.className = "post-footer"
+
+      // Criar o local do post
+      const local = document.createElement("div")
+      local.className = "post-local"
+
+      // Criar o link para o perfil do usuário
+      const userLink = document.createElement("a")
+      userLink.href = "https://github.com/g-soldera"
+      userLink.target = "_blank"
+      const committer = document.createElement("div")
+      committer.className = "post-committer"
+      committer.textContent = `${commit.actor.display_login}`
+      userLink.appendChild(committer)
+      local.appendChild(userLink)
+
+      // Adicionar o separador "/"
+      const separator = document.createElement("span")
+      separator.textContent = "/"
+      local.appendChild(separator)
+
+      // Criar o link para o repositório
+      const repoLink = document.createElement("a")
+      repoLink.href = "https://github.com/g-soldera/portfolio-cards"
+      repoLink.target = "_blank"
+      const repository = document.createElement("div")
+      repository.className = "post-repository"
+      repository.textContent = "portfolio-cards"
+      repoLink.appendChild(repository)
+      local.appendChild(repoLink)
+
+      // Criar o elemento de "ending"
+      const ending = document.createElement("div")
+      ending.className = "post-ending"
+      ending.textContent = "#neverstoplearning"
+
+      // Adicionar os elementos criados ao elemento principal do post
+      content.appendChild(message)
+      content.appendChild(date)
+      content.appendChild(footer)
+      footer.appendChild(local)
+      footer.appendChild(ending)
+
+      // Criar o elemento do post principal
+      const post = document.createElement("div")
+      post.className = "post"
+      post.appendChild(avatar)
+      post.appendChild(content)
+
+      // Adicionar o post ao elemento pai (por exemplo, um container)
+      const container = document.getElementById(".post-content")
+      container.appendChild(post)
+    })
   })
   .catch((error) => {
     console.error(error)
@@ -61,7 +149,7 @@ fetchRecentRepos("g-soldera")
       // Criar o elemento <a> com atributos e classes
       const link = document.createElement("a")
       link.setAttribute("target", "_blank")
-      link.setAttribute("href", "https://github.com/g-soldera")
+      link.setAttribute("href", `${repo.html_url}`)
       link.classList.add("repo-link")
 
       // Criar o elemento <div> container
