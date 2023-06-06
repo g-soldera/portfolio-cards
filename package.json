@@ -10,6 +10,5 @@
   "license": "ISC",
   "dependencies": {
     "octokit": "^2.0.19"
-  },
-  "type": "module"
+  }
 }
