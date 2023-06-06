@@ -259,20 +259,29 @@ fetchRecentRepos("g-soldera")
       // Adicionar o <div> forks ao <div> counts
       counts.appendChild(forks)
 
+      // Adicionar o <div> languageContainer
+      const languageContainer = document.createElement("div")
+      languageContainer.classList.add("language")
+
+      // Adicionar o <div> languageColor
       const languageColor = document.createElement("div")
       languageColor.classList.add("languagecolor")
       const language = repo.language
       const colorCheck = colorsdata[language]?.color || "#000000"
       languageColor.style.backgroundColor = colorCheck
-      const langTrend = colorsdata[language]?.url || "https://github.com/g-soldera"
+
+      // Adicionar o <div> languageText
+      const langTrend =
+        colorsdata[language]?.url || "https://github.com/g-soldera"
       const languageText = document.createElement("a")
       languageText.setAttribute("target", "_blank")
       languageText.setAttribute("href", `${langTrend}`)
       languageText.classList.add("languagetext")
       languageText.textContent = `${language}`
 
-      language.appendChild(languageColor)
-      language.appendChild(languageText)
+      // Adicionar o <div> languageColor e languageText ao <div> languageContainer
+      languageContainer.appendChild(languageColor)
+      languageContainer.appendChild(languageText)
 
       // Adicionar o <div> counts ao <div> rodapé
       repoFooter.appendChild(counts)
