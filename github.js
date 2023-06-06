@@ -74,7 +74,7 @@ fetchRecentCommits("g-soldera")
 
       // Criar o link para o commit
       const commitLink = document.createElement("a")
-      commitLink.href = commit.payload.commits[0].url
+      commitLink.href = commit.payload.commits[0].url.replace("api.github.com/repos", "github.com").replace("/commits/", "/commit/")
       commitLink.target = "_blank"
       commitLink.textContent = `${commit.payload.commits[0].message}`
       message.appendChild(commitLink)
