@@ -285,7 +285,7 @@ fetchRecentRepos("g-soldera")
 
       // Adicionar o <div> counts ao <div> rodapé
       repoFooter.appendChild(counts)
-      repoFooter.appendChild(language)
+      repoFooter.appendChild(languageContainer)
 
       // Adicionar o título, descrição e rodapé ao container
       repoContainer.appendChild(repoTitle)
