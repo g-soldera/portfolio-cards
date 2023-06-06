@@ -33,6 +33,7 @@ async function fetchRecentCommits(username) {
       (a, b) => new Date(b.created_at) - new Date(a.created_at)
     )
     const recentCommits = sortedPushEvents.slice(0, 4).map((event) => ({
+      event: event,
       repo: event.repo.name,
       commitMessage: event.payload.commits[0].message,
       commitDate: event.created_at,
@@ -48,7 +49,9 @@ async function fetchRecentCommits(username) {
 // Consumir os 4 commits mais recentes do usuário "g-soldera"
 fetchRecentCommits("g-soldera")
   .then((recentCommits) => {
-    recentCommits.forEach((commit) => {
+    recentCommits.forEach((commitBase) => {
+      let commit = commitBase.event
+
       console.log(commit)
 
       // Criar o elemento de avatar
@@ -57,9 +60,8 @@ fetchRecentCommits("g-soldera")
 
       // Criar a imagem do avatar
       const avatarImage = document.createElement("img")
-      avatarImage.src =
-        "https://via.placeholder.com/300x300/eee?text=Placeholder"
-      avatarImage.alt = ""
+      avatarImage.src = `${commit.actor.avatar_url}`
+      avatarImage.alt = `${commit.actor.display_login}`
       avatar.appendChild(avatarImage)
 
       // Criar o elemento de conteúdo do post
@@ -74,13 +76,13 @@ fetchRecentCommits("g-soldera")
       const commitLink = document.createElement("a")
       commitLink.href = commit.payload.commits[0].url
       commitLink.target = "_blank"
-      commitLink.textContent = `${commit.commits.message}`
+      commitLink.textContent = `${commit.payload.commits[0].message}`
       message.appendChild(commitLink)
 
       // Criar a data do post
       const date = document.createElement("div")
       date.className = "post-date"
-      date.textContent = "10 minutes ago"
+      date.textContent = formatTimeAgo(commit.created_at)
 
       // Criar o footer do post
       const footer = document.createElement("div")
@@ -92,7 +94,7 @@ fetchRecentCommits("g-soldera")
 
       // Criar o link para o perfil do usuário
       const userLink = document.createElement("a")
-      userLink.href = "https://github.com/g-soldera"
+      userLink.href = "https://github.com/" + commit.actor.display_login
       userLink.target = "_blank"
       const committer = document.createElement("div")
       committer.className = "post-committer"
@@ -107,11 +109,11 @@ fetchRecentCommits("g-soldera")
 
       // Criar o link para o repositório
       const repoLink = document.createElement("a")
-      repoLink.href = "https://github.com/g-soldera/portfolio-cards"
+      repoLink.href = "https://github.com/" + commit.repo.name
       repoLink.target = "_blank"
       const repository = document.createElement("div")
       repository.className = "post-repository"
-      repository.textContent = "portfolio-cards"
+      repository.textContent = `${commit.repo.name.split("/")[1]}`
       repoLink.appendChild(repository)
       local.appendChild(repoLink)
 
@@ -134,7 +136,7 @@ fetchRecentCommits("g-soldera")
       post.appendChild(content)
 
       // Adicionar o post ao elemento pai (por exemplo, um container)
-      const container = document.getElementById(".post-content")
+      const container = document.getElementById("postsblock")
       container.appendChild(post)
     })
   })
@@ -391,3 +393,29 @@ fetchRecentRepos("g-soldera")
   .catch((error) => {
     console.error(error)
   })
+
+function formatTimeAgo(timestamp) {
+  const currentDate = new Date()
+  const pastDate = new Date(timestamp)
+
+  const diff = Math.floor((currentDate - pastDate) / 1000) // Diferença em segundos
+
+  if (diff < 60) {
+    return `há ${diff} segundos`
+  } else if (diff < 3600) {
+    const minutes = Math.floor(diff / 60)
+    return `há ${minutes} minutos`
+  } else if (diff < 86400) {
+    const hours = Math.floor(diff / 3600)
+    return `há ${hours} horas`
+  } else if (diff < 2592000) {
+    const days = Math.floor(diff / 86400)
+    return `há ${days} dias`
+  } else if (diff < 31536000) {
+    const months = Math.floor(diff / 2592000)
+    return `há ${months} meses`
+  } else {
+    const years = Math.floor(diff / 31536000)
+    return `há ${years} anos`
+  }
+}
