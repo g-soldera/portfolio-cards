@@ -1,7 +1,7 @@
 // consumir o octokit
-import { Octokit } from "./node_modules/@octokit"
+import { Octokit } from "@@octokit"
 
-const octokit = new Octokit({
+window.Octokit = new Octokit({
   auth: "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",
 })
 
