@@ -143,7 +143,10 @@ fetchRecentCommits(githubUsername)
         "#KnowledgeJourney",
       ]
       ending.className = "post-ending"
-      ending.textContent = phrases[Math.floor(Math.random() * phrases.length)]
+      ending.textContent =
+        phrases[Math.floor(Math.random() * (phrases.length / 2))] +
+        "ㅤ" +
+        phrases[Math.floor(Math.random() * (phrases.length))]
 
       // Adicionar os elementos criados ao elemento principal do post
       content.appendChild(message)
