@@ -142,11 +142,19 @@ fetchRecentCommits(githubUsername)
         "#SkillsForSuccess",
         "#KnowledgeJourney",
       ]
+
+      let index1 = Math.floor(Math.random() * phrases.length)
+      let index2 = Math.floor(Math.random() * phrases.length)
+
+      while (index2 === index1) {
+        index2 = Math.floor(Math.random() * phrases.length)
+      }
+
+      const phrase1 = phrases[index1]
+      const phrase2 = phrases[index2]
+
       ending.className = "post-ending"
-      ending.textContent =
-        phrases[Math.floor(Math.random() * (phrases.length / 2))] +
-        "ㅤ" +
-        phrases[Math.floor(Math.random() * (phrases.length))]
+      ending.textContent = phrase1 + "ㅤ" + phrase2
 
       // Adicionar os elementos criados ao elemento principal do post
       content.appendChild(message)
