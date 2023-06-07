@@ -15,7 +15,7 @@ Portfolio Cards is an application that allows you to create a customized profile
 
 ## 📷 Preview
 
-[![Preview](https://cdn.discordapp.com/attachments/1109870440945565726/1111637291144859728/sociallinkingHeader.png)](https://portfolio-cards.vercel.app)
+[![Preview](https://media.discordapp.net/attachments/1109870440945565726/1116012126822203502/portfolioHeader.png)](https://portfolio-cards.vercel.app)
 
 ## 📃 Getting Started
 
