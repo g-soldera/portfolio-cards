@@ -42,6 +42,7 @@ a {
 }
 
 .box {
+  max-width: 100vw;
   display: flex;
   justify-content: center;
   gap: 3.75rem;
@@ -49,11 +50,34 @@ a {
   min-width: 85.38rem;
 }
 
+.menu-toggle {
+  color: inherit;
+  border: none;
+  padding: 0.4em 0.7em;
+  padding-top: 0.7em;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  background-color: var(--bg-cards);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.menu-toggle__icon svg {
+  width: 2em;
+  height: 2em;
+  stroke: var(--text-color);
+}
+
 .sideblock {
   width: 21.75rem;
   display: flex;
   flex-direction: column;
   gap: 1.88rem;
+  transition: all 0.4s ease;
 }
 
 .sideblock .profilecard,
@@ -344,4 +368,129 @@ main {
 
 .post .post-ending {
   font-size: 0.88rem;
+}
+
+.overlay {
+  visibility: hidden;
+  position: fixed;
+  opacity: 0;
+  width: 100vw;
+  min-height: 100vh;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.4s ease;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  .box {
+    width: 96vw;
+    min-width: 96vw;
+    max-width: 96%;
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sideblock {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    max-width: 85vw;
+    left: -200%;
+    overflow-y: auto;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .menu-toggle {
+    max-width: 100vw;
+    top: 1em;
+    display: flex;
+    align-items: center;
+
+    transition: transform 0.4s ease;
+  }
+
+  .sideblock.open {
+    left: 1em;
+  }
+  .menu-toggle.hide {
+    transform: translateY(-200%);
+  }
+  .overlay.show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  main {
+    display: flex;
+    gap: 1rem;
+    width: calc(100vw - 3.5rem);
+    margin-top: 1.5rem;
+    margin-left: 1.25rem;
+    margin-right: 2.25rem;
+  }
+
+  .container-projects {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .repo-description {
+    max-height: 60%;
+    font-size: 0.7rem;
+  }
+
+  .post {
+    margin-top: 1rem;
+    height: 9.56rem;
+    align-items: center;
+    padding: 1.88rem;
+    gap: 1.88rem;
+  }
+
+  .post .post-avatar img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+
+  .post .post-message {
+    font-size: .7rem;
+    font-weight: 700;
+  }
+
+  .post .post-date {
+    font-size: 0.58em;
+    margin-bottom: 0.6rem;
+  }
+
+  .post-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88rem;
+  }
+
+  .post .post-local {
+    width: 120%;
+    font-size: 0.6rem;
+    display: flex;
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .repo-description {
+    font-size: 0.7rem;
+  }
+
+  .post .post-ending {
+    font-size: 0.58rem;
+  }
 }
