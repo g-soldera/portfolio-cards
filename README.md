@@ -24,7 +24,7 @@ To use Portfolio Cards, follow these steps:
 1. Clone the repository: `git clone https://github.com/g-soldera/portfolio-cards.git`.
 2. Open the project in your preferred code editor.
 3. Customize the profile information in the code, including your name, photo, contact information, technologies, experiences, and studies.
-4. Update the settings to display your 4 most recent active repositories from GitHub and the 4 most recent commits.
+4. Update the settings to display your most recent active repositories from GitHub and the most recent commits.
 5. Test the project locally to ensure everything is working as expected.
 6. Deploy the project to your preferred hosting platform.
 7. Share your Portfolio Cards page with others and showcase your profile, recent repositories, and commits.
