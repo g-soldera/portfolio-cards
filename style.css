@@ -241,8 +241,11 @@ main {
 
 .repo-container {
   position: relative;
-  padding: 1.88rem;
+  padding: 1.3rem;
   height: 11.63rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .repo-title {
@@ -257,11 +260,7 @@ main {
 }
 
 .repo-description {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-  height: 2.44rem;
   box-sizing: border-box;
-
   font-size: 0.88rem;
 }
 
