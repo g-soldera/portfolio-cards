@@ -16,11 +16,13 @@ function checkColorScheme() {
 window.addEventListener("load", checkColorScheme)
 
 var menuToggle = document.querySelector(".menu-toggle")
+var closeToggle = document.querySelector(".close-toggle")
 var overlay = document.querySelector(".overlay")
 var sideBlock = document.querySelector(".sideblock")
 
 menuToggle.addEventListener("click", function () {
   sideBlock.classList.toggle("open")
+  closeToggle.classList.toggle("show")
   menuToggle.classList.toggle("hide")
   overlay.classList.toggle("show")
 })
@@ -32,6 +34,7 @@ document.addEventListener("mouseup", function (e) {
   if (!container.contains(e.target) && container.classList.contains("open")) {
     container.classList.remove("open")
     menuToggle.classList.remove("hide")
+    closeToggle.classList.remove("show")
     overlay.classList.remove("show")
   }
 })

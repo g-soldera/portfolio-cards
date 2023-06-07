@@ -72,6 +72,28 @@ a {
   stroke: var(--text-color);
 }
 
+.close-toggle {
+  color: inherit;
+  border: none;
+  padding: 0.4em 0.7em;
+  padding-top: 0.7em;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  background-color: var(--bg-cards);
+  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+.close-toggle__icon svg {
+  width: 2em;
+  height: 2em;
+  stroke: var(--text-color);
+}
+
 .sideblock {
   width: 21.75rem;
   display: flex;
@@ -89,6 +111,7 @@ a {
   background-color: var(--bg-cards);
   border-radius: 1.25rem;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  z-index: 999;
 }
 
 .sideblock .profilecard {
@@ -116,6 +139,7 @@ a {
   font-weight: 300;
   font-size: 0.81rem;
   line-height: 1rem;
+  margin-bottom: 1.88rem;
 }
 
 .sideblock .contactinfo {
@@ -371,13 +395,15 @@ main {
 }
 
 .overlay {
+  z-index: 2;
   visibility: hidden;
   position: fixed;
   opacity: 0;
-  width: 100vw;
+  min-width: 100vw;
   min-height: 100vh;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  overflow-y: auto;
   transition: all 0.4s ease;
 }
 
@@ -397,12 +423,16 @@ main {
   }
 
   .sideblock {
-    z-index: 999;
+    gap: 1rem;
     position: fixed;
-    top: 0;
-    max-width: 85vw;
+    top: 1em;
+    padding-bottom: 2em;
+    z-index: 999;
+    max-width: 100vw;
+    padding-right: 2em;
+    max-height: 100vh;
+    overflow-y: scroll;
     left: -200%;
-    overflow-y: auto;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }
@@ -416,11 +446,26 @@ main {
     transition: transform 0.4s ease;
   }
 
+  .close-toggle {
+    z-index: 1000;
+    max-width: 100vw;
+    position: fixed;
+    right: -50%;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+
+    transition: all 0.4s ease;
+  }
+
   .sideblock.open {
-    left: 1em;
+    left: 1rem;
+  }
+  .close-toggle.show {
+    right: 1rem;
   }
   .menu-toggle.hide {
-    transform: translateY(-200%);
+    bottom: 1.5rem;
   }
   .overlay.show {
     visibility: visible;
@@ -462,7 +507,7 @@ main {
   }
 
   .post .post-message {
-    font-size: .7rem;
+    font-size: 0.7rem;
     font-weight: 700;
   }
 
