@@ -53,8 +53,6 @@ fetchRecentCommits(githubUsername)
     recentCommits.forEach((commitBase) => {
       let commit = commitBase.event
 
-      console.log(commit)
-
       // Criar o elemento de avatar
       const avatar = document.createElement("div")
       avatar.className = "post-avatar"
@@ -122,8 +120,30 @@ fetchRecentCommits(githubUsername)
 
       // Criar o elemento de "ending"
       const ending = document.createElement("div")
+      const phrases = [
+        "#NeverStopLearning",
+        "#KnowledgeIsPower",
+        "#ContinuousImprovement",
+        "#GrowthMindset",
+        "#LearnEveryday",
+        "#StayCurious",
+        "#AlwaysLearning",
+        "#EducationMatters",
+        "#LoveToLearn",
+        "#KeepGrowing",
+        "#LifelongLearner",
+        "#ExpandYourMind",
+        "#KnowledgeIsKey",
+        "#EmbraceGrowth",
+        "#CuriosityDriven",
+        "#LearnAndGrow",
+        "#EmpowerYourself",
+        "#UnlockPotential",
+        "#SkillsForSuccess",
+        "#KnowledgeJourney",
+      ]
       ending.className = "post-ending"
-      ending.textContent = "#neverstoplearning"
+      ending.textContent = phrases[Math.floor(Math.random() * phrases.length)]
 
       // Adicionar os elementos criados ao elemento principal do post
       content.appendChild(message)
@@ -211,9 +231,13 @@ fetchRecentRepos(githubUsername)
       repoTitle.appendChild(name)
 
       // Criar o elemento <div> descrição
+      const repoDesc =
+        repo.description === null
+          ? "No description available"
+          : `${repo.description}`
       const repoDescription = document.createElement("div")
       repoDescription.classList.add("repo-description")
-      repoDescription.textContent = `${repo.description}`
+      repoDescription.textContent = repoDesc
 
       // Criar o elemento <div> rodapé
       const repoFooter = document.createElement("div")
